@@ -1,0 +1,45 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- dev
+
+schedules:
+- cron: '30 23 * * 1-5'
+  displayName: Daily Automation Run
+  branches:
+    include:
+    - master
+  always: true
+
+pool:
+  vmImage: ubuntu-latest
+strategy:
+  matrix:
+    Python310:
+      python.version: '3.10'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    pip install robotframework robotframework-seleniumlibrary && npm install chromedriver
+    pip install --upgrade pip
+    pip install selenium==4.9.1
+  displayName: 'Install dependencies'
+
+- powershell: |
+    robot --pythonpath . -x outputxunit.xml -v ENV:qa -v BROWSER:chrome --include qa ./src
+  displayName: 'Run Robot Framework Scripts'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: outputxunit.xml
+    searchFolder: '/home/vsts/work/1/s/'
+    condition: succeededOrFailed()
+    displayName: 'Publish Test Results outputxunit.xml'

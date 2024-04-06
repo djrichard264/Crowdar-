@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20240406 01:32:06.796" rpa="false" schemaversion="3">
+<suite id="s1" name="Src" source="C:\automation\src">
+<suite id="s1-s1" name="000 Config And Initialize System" source="C:\automation\src\000_config_and_initialize_system.robot">
+<test id="s1-s1-t1" name="Setting Variables of Enviroment" line="23">
+<kw name="urls testing" library="enviroment">
+<doc>Funcionalidad: Ninguna
+Tipo: Seteo de Variables
+Caracteristicas: Ambiente testing</doc>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BROWSER}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240406 01:32:07.056" level="INFO">${BROWSER} = chrome</msg>
+<status status="PASS" starttime="20240406 01:32:07.055" endtime="20240406 01:32:07.056"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${URL}</arg>
+<arg>https://www.saucedemo.com/</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240406 01:32:07.057" level="INFO">${URL} = https://www.saucedemo.com/</msg>
+<status status="PASS" starttime="20240406 01:32:07.056" endtime="20240406 01:32:07.057"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${VALID USER ADMIN S1}</arg>
+<arg>standard_user</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240406 01:32:07.057" level="INFO">${VALID USER ADMIN S1} = standard_user</msg>
+<status status="PASS" starttime="20240406 01:32:07.057" endtime="20240406 01:32:07.057"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${VALID PASS ADMIN S1}</arg>
+<arg>secret_sauce</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240406 01:32:07.058" level="INFO">${VALID PASS ADMIN S1} = secret_sauce</msg>
+<status status="PASS" starttime="20240406 01:32:07.058" endtime="20240406 01:32:07.058"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:07.055" endtime="20240406 01:32:07.058"/>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240406 01:32:07.058" endtime="20240406 01:32:07.059"/>
+</kw>
+<doc>Setting Enviroment Variables</doc>
+<tag>config</tag>
+<tag>development</tag>
+<tag>qa</tag>
+<status status="PASS" starttime="20240406 01:32:07.054" endtime="20240406 01:32:07.059"/>
+</test>
+<doc>Config Enviroments
+Initialize System
+This Test Must Execute with all Enviroments
+The Enviroment is: qa</doc>
+<status status="PASS" starttime="20240406 01:32:06.820" endtime="20240406 01:32:07.060"/>
+</suite>
+<suite id="s1-s2" name="Iniciar sesión con credenciales válidas fallido" source="C:\automation\src\Iniciar sesión con credenciales válidas fallido.robot">
+<test id="s1-s2-t1" name="Scenario: Iniciar sesión con credenciales válidas" line="15">
+<kw name="Given Tenga acceso a la &quot;URL&quot; When Ingresa el &quot;Username&quot; y la &quot;Password&quot;" library="crowdar_loginKeywords">
+<arg>${VALID USER ADMIN S1}</arg>
+<arg>${VALID PASS ADMIN S1}</arg>
+<doc>Usuario existente y acceso a la URL</doc>
+<kw name="Open browser with url and browserType" library="commonPage">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Abre Navegador</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240406 01:32:07.079" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20240406 01:32:07.079" endtime="20240406 01:32:09.098"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240406 01:32:09.098" endtime="20240406 01:32:09.220"/>
+</kw>
+<kw name="Set Browser Implicit Wait" library="SeleniumLibrary">
+<arg>15s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20240406 01:32:09.220" endtime="20240406 01:32:09.221"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:07.078" endtime="20240406 01:32:09.222"/>
+</kw>
+<kw name="Verify Page Loaded" library="crowdar_loginPage">
+<doc>Validación</doc>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>15s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20240406 01:32:09.222" endtime="20240406 01:32:09.223"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Swag Labs</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20240406 01:32:09.228" level="INFO">Page title is 'Swag Labs'.</msg>
+<status status="PASS" starttime="20240406 01:32:09.223" endtime="20240406 01:32:09.228"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Swag Labs</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240406 01:32:09.241" level="INFO">Current page contains text 'Swag Labs'.</msg>
+<status status="PASS" starttime="20240406 01:32:09.228" endtime="20240406 01:32:09.241"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${LOGIN_BUTTON}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240406 01:32:09.241" endtime="20240406 01:32:09.265"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:09.222" endtime="20240406 01:32:09.265"/>
+</kw>
+<kw name="Complete username and password" library="crowdar_loginPage">
+<arg>${usuarioCOM}</arg>
+<arg>${passCOM}</arg>
+<doc>Usuario y Clave</doc>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>15s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20240406 01:32:09.266" endtime="20240406 01:32:09.267"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${USER_HOME}</arg>
+<arg>${pUsername}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240406 01:32:09.268" level="INFO">Typing text 'standard_user' into text field 'xpath:.//*[@id="user-name"]'.</msg>
+<status status="PASS" starttime="20240406 01:32:09.267" endtime="20240406 01:32:09.366"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${PASSWORD_HOME}</arg>
+<arg>${pPassword}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240406 01:32:09.366" level="INFO">Typing text 'secret_sauce' into text field 'xpath:.//*[@id="password"]'.</msg>
+<status status="PASS" starttime="20240406 01:32:09.366" endtime="20240406 01:32:09.476"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:09.266" endtime="20240406 01:32:09.476"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:07.078" endtime="20240406 01:32:09.477"/>
+</kw>
+<kw name="And Haga clic en el botón de inicio de sesión" library="crowdar_loginKeywords">
+<doc>Presionar el boton login</doc>
+<kw name="Click button login" library="crowdar_loginPage">
+<doc>Boton Ingresar</doc>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>15s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20240406 01:32:09.479" endtime="20240406 01:32:09.480"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240406 01:32:09.480" level="INFO">Clicking button 'xpath:.//*[@id="login-button"]'.</msg>
+<status status="PASS" starttime="20240406 01:32:09.480" endtime="20240406 01:32:09.562"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:09.478" endtime="20240406 01:32:09.562"/>
+</kw>
+<status status="PASS" starttime="20240406 01:32:09.477" endtime="20240406 01:32:09.562"/>
+</kw>
+<kw name="Then El sistema debería redirigirlo a la página principal I" library="crowdar_HomeKeywords">
+<doc>El sistema debería redirigirlo a la página principal</doc>
+<kw name="Then El sistema debería redirigirlo a la página principal I" library="crowdar_HomePage">
+<doc>Validación</doc>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>15s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20240406 01:32:09.564" endtime="20240406 01:32:09.567"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>FALLIDO</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20240406 01:32:09.843" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20240406 01:32:09.844" level="FAIL">Title should have been 'FALLIDO' but was 'Swag Labs'.</msg>
+<status status="FAIL" starttime="20240406 01:32:09.567" endtime="20240406 01:32:09.846"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>NO EXISTE</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20240406 01:32:09.846" endtime="20240406 01:32:09.846"/>
+</kw>
+<status status="FAIL" starttime="20240406 01:32:09.564" endtime="20240406 01:32:09.847"/>
+</kw>
+<status status="FAIL" starttime="20240406 01:32:09.563" endtime="20240406 01:32:09.847"/>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240406 01:32:09.848" endtime="20240406 01:32:11.984"/>
+</kw>
+<doc>prueba</doc>
+<tag>development</tag>
+<tag>qa</tag>
+<status status="FAIL" starttime="20240406 01:32:07.077" endtime="20240406 01:32:11.985">Title should have been 'FALLIDO' but was 'Swag Labs'.</status>
+</test>
+<doc>Login and home of pages.
+
+
+</doc>
+<status status="FAIL" starttime="20240406 01:32:07.062" endtime="20240406 01:32:11.986"/>
+</suite>
+<status status="FAIL" starttime="20240406 01:32:06.798" endtime="20240406 01:32:11.988"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">config</stat>
+<stat pass="1" fail="1" skip="0">development</stat>
+<stat pass="1" fail="1" skip="0">qa</stat>
+</tag>
+<suite>
+<stat pass="1" fail="1" skip="0" id="s1" name="Src">Src</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="000 Config And Initialize System">Src.000 Config And Initialize System</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s2" name="Iniciar sesión con credenciales válidas fallido">Src.Iniciar sesión con credenciales válidas fallido</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
